@@ -8,6 +8,7 @@
 </head>
 <body>
 Hello World!!
+Bye World~~~
 <br/>
 <%@ include file="/include/footer.jspf" %>
 </body>
