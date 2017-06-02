@@ -47,6 +47,13 @@ public class ApiQuestionController {
 		}
 	}
 	
+	@RequestMapping(value = "{questionId}", method = RequestMethod.GET)
+	public Question getQuestion(@PathVariable long questionId) throws Exception {
+		Question question = questionDao.findById(questionId);
+		log.debug("QUESTION: {}", question);
+		return question;
+	}
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<Question> list() throws Exception {
 		return questionDao.findAll();

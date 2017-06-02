@@ -11,11 +11,14 @@ import next.model.Answer;
 import next.model.Question;
 import next.model.User;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class QnaService {
+	private static final Logger log = LoggerFactory.getLogger(QnaService.class);
 	private QuestionDao questionDao;
 	private AnswerDao answerDao;
 
@@ -35,6 +38,8 @@ public class QnaService {
 
 	public void deleteQuestion(long questionId, User user) throws CannotOperateException {
 		Question question = questionDao.findById(questionId);
+		log.debug("questions info: {}, user: {}", question, user);
+		
 		if (question == null) {
 			throw new EmptyResultDataAccessException("존재하지 않는 질문입니다.", 1);
 		}
